@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-01-25T17:22:09.800954+00:00",
+  "timestamp": "2021-01-29T00:03:18.024895+00:00",
   "repo": "quicwg/load-balancers",
   "labels": [
     {
@@ -1565,11 +1565,13 @@
       "state": "OPEN",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
-      "assignees": [],
+      "assignees": [
+        "martinduke"
+      ],
       "labels": [],
       "body": "For low-config CID (LCID), which dynamically allocates server IDs, the current editor's draft has a heuristic to extract a server ID from a client-generated non-compliant CID. The fundamental issue is that the server *has* to get an SID from an incoming Initial, even if the SR bits of the Connection ID imply that it doesn't map to the LCID config.\r\n\r\n> \r\n> If the DCID references the 4-tuple routing bits or an undefined configuration, use the following procedure to establish a predictable template for server ID extraction:\r\n> * Identify the instance of Low-Config CID configuration with the largest config rotation codepoint. For example, if configurations 0b10, 0b01, and 0b00 all use the low-config CID algorithm and have server ID lengths of 3, 5, and 7 octets, respectively, and a packet comes in with codepoint 0b11, the load balancer would extract 3 octets for the server ID.\r\n> * Extract the appropriate number of octets.\r\n> * If the server ID matches one already in the table, forward the packet to that server.\r\n> * If not, the load balancer runs the algorithm of its choosing and adds the extracted server ID to the table corresponding to the highest-value Low-Config CID Configuration codepoint.\r\n\r\nThis doesn't work with config rotation. The main principle in CR is that the load balancer needs to get the configuration first -- otherwise the server might generate CIDs that the LB can't route, and we break ongoing connections. Given that, we have a problem. Consider:\r\n\r\n1. LB and server both have LCID configuration 0b00 with SIDL of 1.\r\n2. LB gets LCID configuration 0b01 with an SIDL of 2.\r\n3. LB gets a packet with CR bits 0b01 and octets 2-3 0xfa13, and randomly forwards it to the server\r\n4. The LB will add an SID entry for 0xfa13, but the server will add an SID entry for 0xfa.\r\n5. The server will generate CIDs with CR 0xb00 and SID 0xfa, and the LB will not route them correctly.\r\n\r\nStated more generally: in the current design, the LB can never be sure if the server has a given configuration and that makes it very hard for the LB to infer what the server is going to do with a given CID to get an SID for its table. We don't even know if it's non-compliant at the server or not!\r\n\r\nThere are some potential fixes here:\r\n1) Give up on dynamic server ID allocation\r\n2) Have the LB keep track of config rotation bits it's observed in short header packets to each server -- this is an indication the server has the CR bits. This is also seems vulnerable to attack with injection of random short-header packets.\r\n3) Reserve the SID corresponding to *all* configurations when routing a packet. In effect, this makes it impossible to adapt the crypto algorithms to use dynamically allocated server ID and have them coexist with plaintext ones: the crypto algorithms will essentially have randomly distributed plaintext fields, so the table will fill up fast.\r\n4) Remove config rotation from dynamic allocation; this makes changes to config a site maintenance event. This also effectively prevents using crypto with dynamic allocation, because you can't rotate keys.\r\n5) Change the behavior of a server when it gets CR bits it doesn't understand. Don't extract a server ID. If the server has no IDs because it just booted, simply echo the client-generated CID. When the server gets a config that lets it extract an SID from this, or gets a CID on another connection that it can decode, then it can update the CID on this connection. This implies that we could have valid short header packets with non-compliant DCIDs, so we'd have to have the LB admit these instead of dropping them like it does currently.\r\n6) Same as #5, but instead of echoing the client-generated CID, it uses the 4-tuple routing bits for a new CID. This will make the\r\nCID compliant, but abandon the whole purpose of QUIC-LB until an Initial with the right CR bits arrives (1 in 4 chance per connection).\r\n\r\n***\r\n\r\nUnfortunately, this breaks even more badly it coexists with a configuration with static SIDs. Another example:\r\n1. LB and server have LCID config 0b00 with an SIDL of 1. Server A has SID 0x01 and Server B has SID 0x02.\r\n2. LB gets stream CID config 0b01 (encrypted, static SIDs)\r\n3. An Initial packet has CR bits 0b01. The second octet is 0x02 but the proper SCID decoding maps to Server A. So, it routes to Server A.\r\n4. Server A doesn't have config 0b01 yet, so it extracts an SID from the CID and adds 0x02 to its list of SIDs. It generates an Low-config CID that the LB will route to Server B!\r\n\r\nFrom this, I conclude that dynamically and statically configured SIDs can't safely coexist in the same config space.\r\n\r\n***\r\n\r\nThis is all very hard to reason about. All the options are ugly but my instinct is to retreat to the first option and just abandon this dynamic design.\r\n\r\n\r\n",
       "createdAt": "2021-01-16T01:05:23Z",
-      "updatedAt": "2021-01-16T07:00:41Z",
+      "updatedAt": "2021-01-28T23:36:16Z",
       "closedAt": null,
       "comments": [
         {
@@ -1599,6 +1601,34 @@
           "body": "Assuming handshakes are going on, yes, LBs can see what configs are operating. This is my option 2 but using egress SCID instead of ingress DCID, definitely an improvement.\r\n\r\nSeveral drafts ago we moved away from explicit in-band signaling. Now we're headed back.",
           "createdAt": "2021-01-16T07:00:41Z",
           "updatedAt": "2021-01-16T07:00:41Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@ianswett and I had a long discussion about this problem. We reached a consensus that solution #6 was the least bad one. To summarize:\r\n1. If a client-generated CID comes in that does not match a known config, do not add an SID entry at the LB or server.\r\n2. If it does match a config codepoint, extract the SID accordingly and add it to the table.\r\n3. There will be cases where the LB has a config codepoint, but the server does not. If so, the LB has \"wasted\" an entry but this is not a big problem. The reverse would be a problem, but it is already a requirement for the LB to have the superset of server configs.\r\n4. When it first loads a config, the server will not have any SIDs. This should correct itself after a handful of connections, but until it does the CIDs it generates use the 4-tuple routing codepoint. When it does get an SID, it can retire the old ones across all connections. Thus, there are transitory states where a server can't support rebinding and migration.\r\n\r\nThis is still open for discussion, but I am working on a large PR to reorganize the whole routing section around dynamic SID allocation.",
+          "createdAt": "2021-01-28T22:24:04Z",
+          "updatedAt": "2021-01-28T22:24:04Z"
+        },
+        {
+          "author": "ianswett",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "One Note: I believe it can support NAT rebinding, just not migration or changing CIDs.  If a client unknowingly changes its address due to a NAT rebind, it does not change its CID.",
+          "createdAt": "2021-01-28T23:25:06Z",
+          "updatedAt": "2021-01-28T23:25:06Z"
+        },
+        {
+          "author": "martinduke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "No, because if it's the 4-tuple routing codepoint the LB ignores the rest of the CID. So it will route based on the (changed) 4tuple",
+          "createdAt": "2021-01-28T23:26:53Z",
+          "updatedAt": "2021-01-28T23:26:53Z"
+        },
+        {
+          "author": "ianswett",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Of course, I was thinking of something else.",
+          "createdAt": "2021-01-28T23:36:16Z",
+          "updatedAt": "2021-01-28T23:36:16Z"
         }
       ]
     },
@@ -4715,6 +4745,32 @@
       "mergeCommit": {
         "oid": "173222c345575842cc6b7061022d13c72d7410fb"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 86,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTYxMzEyNTMy",
+      "title": "Clean up server-use bytes",
+      "url": "https://github.com/quicwg/load-balancers/pull/86",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes #85",
+      "createdAt": "2021-01-25T19:26:47Z",
+      "updatedAt": "2021-01-25T19:26:52Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "master",
+      "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "more-server-use",
+      "headRefOid": "c3f0269a09bd72fc986e9e9fa90083d8d29670f6",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
