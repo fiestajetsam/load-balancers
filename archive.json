@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-01-29T00:03:18.024895+00:00",
+  "timestamp": "2021-01-30T00:31:19.107574+00:00",
   "repo": "quicwg/load-balancers",
   "labels": [
     {
@@ -1645,6 +1645,22 @@
       "body": "Make sure each algorithm always provides 2-3 octets for server use. The current SID limits don't do that.",
       "createdAt": "2021-01-16T01:48:21Z",
       "updatedAt": "2021-01-16T01:48:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 88,
+      "id": "MDU6SXNzdWU3OTY0OTE1MTA=",
+      "title": "Extend low-config concept to all algorithms",
+      "url": "https://github.com/quicwg/load-balancers/issues/88",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In principle, the low-config algorithm's method of extracting a server ID can be extended to all the algorithms. Thus the \"server ID allocation method\" would be an independent variable, with value 'dynamic' and 'static', and the algorithms could operate with either method.\r\n\r\nThis is a significant refactor of the routing section, but will make future decisions about static/dynamic much cleaner to discuss.",
+      "createdAt": "2021-01-29T01:02:05Z",
+      "updatedAt": "2021-01-29T01:02:05Z",
       "closedAt": null,
       "comments": []
     }
@@ -4771,6 +4787,34 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 87,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTYzNjQ1OTkx",
+      "title": "Update branch from master",
+      "url": "https://github.com/quicwg/load-balancers/pull/87",
+      "state": "MERGED",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-29T00:04:36Z",
+      "updatedAt": "2021-01-29T00:04:47Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "all-lowconfig",
+      "baseRefOid": "11c934ac8400b97af014bbe3ce43ee900cf99ba9",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "master",
+      "headRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
+      "closedAt": "2021-01-29T00:04:47Z",
+      "mergedAt": "2021-01-29T00:04:47Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "433f0d5e41f2ee0dc8a27cdd933df60d08b8139c"
+      },
       "comments": [],
       "reviews": []
     }
