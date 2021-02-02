@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-01-30T00:31:19.107574+00:00",
+  "timestamp": "2021-02-02T01:32:27.806845+00:00",
   "repo": "quicwg/load-balancers",
   "labels": [
     {
@@ -4815,6 +4815,58 @@
       "mergeCommit": {
         "oid": "433f0d5e41f2ee0dc8a27cdd933df60d08b8139c"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 89,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTY0MzI0MzQ2",
+      "title": "Generalize SID Allocation",
+      "url": "https://github.com/quicwg/load-balancers/pull/89",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Fixes the broken bits in #84 and also extends to encrypted algorithms (fixing #88)",
+      "createdAt": "2021-01-30T00:31:49Z",
+      "updatedAt": "2021-01-30T00:32:03Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "master",
+      "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "all-lowconfig",
+      "headRefOid": "607ab4fcec881ada10b59a00b414517c19e7d21c",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 90,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTY0MzQ2MTE1",
+      "title": "YANG Model",
+      "url": "https://github.com/quicwg/load-balancers/pull/90",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-01-30T02:44:59Z",
+      "updatedAt": "2021-02-02T01:31:49Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "master",
+      "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "yang",
+      "headRefOid": "7253e9fa54523612113991b2a712c4250576bcf3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
