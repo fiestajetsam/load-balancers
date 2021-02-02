@@ -1857,7 +1857,9 @@ Internet-Draft                   QUIC-LB                   February 2021
 
        typedef quic-lb-key {
          type yang:hex-string;
-         length 16;
+         length 47;
+         description
+           "This is a 16-byte key, represented with 47 bytes"
        }
 
        list cid-configs {
@@ -1896,8 +1898,6 @@ Internet-Draft                   QUIC-LB                   February 2021
            choice sid-allocation {
              case dynamic {
                leaf lb-timeout {
-                 type uint32;
-                 mandatory true;
 
 
 
@@ -1906,6 +1906,8 @@ Duke & Banks              Expires 6 August 2021                [Page 34]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+                 type uint32;
+                 mandatory true;
                  description
                    "Time (in seconds) to keep a server ID allocation if
                     no packets with that server ID arrive."
@@ -1917,8 +1919,9 @@ Internet-Draft                   QUIC-LB                   February 2021
                  key "server-id";
 
                  leaf server-id {
-                   type yang:hex-string;// of length server-id-length
+                   type yang:hex-string;
                    mandatory true;
+                   must 'string-length(.) = 3 * ../server-id-length - 1'
                    description
                      "An allocated server ID";
                  }
@@ -1951,9 +1954,6 @@ Internet-Draft                   QUIC-LB                   February 2021
                  }
                  description
                    "Length, in octets, of the nonce"
-               }
-             }
-
 
 
 
@@ -1961,6 +1961,9 @@ Duke & Banks              Expires 6 August 2021                [Page 35]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+               }
+             }
 
              case block-cipher {
                leaf key {
@@ -2007,9 +2010,6 @@ Internet-Draft                   QUIC-LB                   February 2021
              list token-keys {
                key "key-sequence-number";
 
-               leaf key-sequence-number {
-                 type uint8;
-                 mandatory true;
 
 
 
@@ -2018,6 +2018,9 @@ Duke & Banks              Expires 6 August 2021                [Page 36]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+               leaf key-sequence-number {
+                 type uint8;
+                 mandatory true;
                  description
                    "Identifies the key used to encrypt the token";
                }
@@ -2031,11 +2034,11 @@ Internet-Draft                   QUIC-LB                   February 2021
 
                leaf token-iv {
                  type yang:hex-string {
-                   length 8;
+                   length 23;
                  }
                  mandatory true;
                  description
-                   "IV to encrypt the token";
+                   "8-byte IV to encrypt the token, encoded in 23 bytes";
                }
              }
            }
@@ -2047,9 +2050,6 @@ Internet-Draft                   QUIC-LB                   February 2021
 A.1.  Tree Diagram
 
    This summary of the YANG model uses the notation in [RFC8340].
-
-
-
 
 
 
