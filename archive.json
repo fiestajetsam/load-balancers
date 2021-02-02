@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-02-02T01:32:27.806845+00:00",
+  "timestamp": "2021-02-02T23:23:35.011562+00:00",
   "repo": "quicwg/load-balancers",
   "labels": [
     {
@@ -1637,15 +1637,15 @@
       "id": "MDU6SXNzdWU3ODczMjA2MjY=",
       "title": "Bytes for server use",
       "url": "https://github.com/quicwg/load-balancers/issues/85",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Make sure each algorithm always provides 2-3 octets for server use. The current SID limits don't do that.",
       "createdAt": "2021-01-16T01:48:21Z",
-      "updatedAt": "2021-01-16T01:48:21Z",
-      "closedAt": null,
+      "updatedAt": "2021-02-02T23:23:07Z",
+      "closedAt": "2021-02-02T23:23:07Z",
       "comments": []
     },
     {
@@ -1661,6 +1661,22 @@
       "body": "In principle, the low-config algorithm's method of extracting a server ID can be extended to all the algorithms. Thus the \"server ID allocation method\" would be an independent variable, with value 'dynamic' and 'static', and the algorithms could operate with either method.\r\n\r\nThis is a significant refactor of the routing section, but will make future decisions about static/dynamic much cleaner to discuss.",
       "createdAt": "2021-01-29T01:02:05Z",
       "updatedAt": "2021-01-29T01:02:05Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 91,
+      "id": "MDU6SXNzdWU3OTk1NjE5MzQ=",
+      "title": "Replace configuration pseudocode with YANG",
+      "url": "https://github.com/quicwg/load-balancers/issues/91",
+      "state": "OPEN",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As the config gets more complicated, the C-ish pseudocode is getting more unwieldy. YANG is the standard for configuration models, so I should bite the bullet and just figure out YANG.",
+      "createdAt": "2021-02-02T18:36:47Z",
+      "updatedAt": "2021-02-02T18:36:47Z",
       "closedAt": null,
       "comments": []
     }
@@ -4769,24 +4785,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NTYxMzEyNTMy",
       "title": "Clean up server-use bytes",
       "url": "https://github.com/quicwg/load-balancers/pull/86",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes #85",
       "createdAt": "2021-01-25T19:26:47Z",
-      "updatedAt": "2021-01-25T19:26:52Z",
+      "updatedAt": "2021-02-02T23:23:08Z",
       "baseRepository": "quicwg/load-balancers",
       "baseRefName": "master",
       "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
       "headRepository": "quicwg/load-balancers",
       "headRefName": "more-server-use",
       "headRefOid": "c3f0269a09bd72fc986e9e9fa90083d8d29670f6",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-02-02T23:23:07Z",
+      "mergedAt": "2021-02-02T23:23:07Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "50f9c367fea204de941f4f12f1af965b86382868"
+      },
       "comments": [],
       "reviews": []
     },
@@ -4856,7 +4874,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2021-01-30T02:44:59Z",
-      "updatedAt": "2021-02-02T01:31:49Z",
+      "updatedAt": "2021-02-02T18:37:02Z",
       "baseRepository": "quicwg/load-balancers",
       "baseRefName": "master",
       "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
@@ -4867,7 +4885,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "fixes #91 ",
+          "createdAt": "2021-02-02T18:37:02Z",
+          "updatedAt": "2021-02-02T18:37:02Z"
+        }
+      ],
       "reviews": []
     }
   ]
