@@ -5,8 +5,8 @@
 QUIC                                                             M. Duke
 Internet-Draft                                         F5 Networks, Inc.
 Intended status: Standards Track                                N. Banks
-Expires: 6 August 2021                                         Microsoft
-                                                         2 February 2021
+Expires: 7 August 2021                                         Microsoft
+                                                         3 February 2021
 
 
             QUIC-LB: Generating Routable QUIC Connection IDs
@@ -53,12 +53,12 @@ Status of This Memo
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 1]
+Duke & Banks              Expires 7 August 2021                 [Page 1]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-   This Internet-Draft will expire on 6 August 2021.
+   This Internet-Draft will expire on 7 August 2021.
 
 Copyright Notice
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 2]
+Duke & Banks              Expires 7 August 2021                 [Page 2]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -165,7 +165,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 3]
+Duke & Banks              Expires 7 August 2021                 [Page 3]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -221,7 +221,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 4]
+Duke & Banks              Expires 7 August 2021                 [Page 4]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -277,7 +277,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 5]
+Duke & Banks              Expires 7 August 2021                 [Page 5]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -333,7 +333,7 @@ Example Structure {
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 6]
+Duke & Banks              Expires 7 August 2021                 [Page 6]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -389,7 +389,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 7]
+Duke & Banks              Expires 7 August 2021                 [Page 7]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -445,7 +445,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 8]
+Duke & Banks              Expires 7 August 2021                 [Page 8]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -501,7 +501,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                 [Page 9]
+Duke & Banks              Expires 7 August 2021                 [Page 9]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -557,7 +557,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 10]
+Duke & Banks              Expires 7 August 2021                [Page 10]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -613,7 +613,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 11]
+Duke & Banks              Expires 7 August 2021                [Page 11]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -669,7 +669,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 12]
+Duke & Banks              Expires 7 August 2021                [Page 12]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -725,7 +725,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 13]
+Duke & Banks              Expires 7 August 2021                [Page 13]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -781,7 +781,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 14]
+Duke & Banks              Expires 7 August 2021                [Page 14]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -837,7 +837,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 15]
+Duke & Banks              Expires 7 August 2021                [Page 15]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -893,7 +893,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 16]
+Duke & Banks              Expires 7 August 2021                [Page 16]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -949,7 +949,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 17]
+Duke & Banks              Expires 7 August 2021                [Page 17]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 18]
+Duke & Banks              Expires 7 August 2021                [Page 18]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 19]
+Duke & Banks              Expires 7 August 2021                [Page 19]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 20]
+Duke & Banks              Expires 7 August 2021                [Page 20]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1173,7 +1173,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 21]
+Duke & Banks              Expires 7 August 2021                [Page 21]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1229,7 +1229,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 22]
+Duke & Banks              Expires 7 August 2021                [Page 22]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1285,7 +1285,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 23]
+Duke & Banks              Expires 7 August 2021                [Page 23]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1341,7 +1341,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 24]
+Duke & Banks              Expires 7 August 2021                [Page 24]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1397,7 +1397,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 25]
+Duke & Banks              Expires 7 August 2021                [Page 25]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1453,7 +1453,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 26]
+Duke & Banks              Expires 7 August 2021                [Page 26]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1509,7 +1509,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 27]
+Duke & Banks              Expires 7 August 2021                [Page 27]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1565,7 +1565,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 28]
+Duke & Banks              Expires 7 August 2021                [Page 28]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1621,7 +1621,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 29]
+Duke & Banks              Expires 7 August 2021                [Page 29]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1677,7 +1677,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 30]
+Duke & Banks              Expires 7 August 2021                [Page 30]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1733,7 +1733,7 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 31]
+Duke & Banks              Expires 7 August 2021                [Page 31]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1789,7 +1789,7 @@ module ietf-quic-lb {
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 32]
+Duke & Banks              Expires 7 August 2021                [Page 32]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -1832,219 +1832,219 @@ Internet-Draft                   QUIC-LB                   February 2021
      NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
      'MAY', and 'OPTIONAL' in this document are to be interpreted as
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
-     they appear in all capitals, as shown here.";"
+     they appear in all capitals, as shown here.";
 
-     revision "2021-01-29" {
+   revision "2021-01-29" {
+     description
+       "Initial Version";
+     reference
+       "RFC XXXX, QUIC-LB: Generating Routable QUIC Connection IDs";
+   }
+
+   container quic-lb {
+
+
+
+Duke & Banks              Expires 7 August 2021                [Page 33]
+
+Internet-Draft                   QUIC-LB                   February 2021
+
+
+     presence "The container for QUIC-LB configuration.";
+
+     description
+       "QUIC-LB container.";
+
+     typedef quic-lb-key {
+       type yang:hex-string;
+       length 47;
        description
-         "Initial Version";
-       reference
-         "RFC XXXX, QUIC-LB: Generating Routable QUIC Connection IDs"
+         "This is a 16-byte key, represented with 47 bytes";
      }
 
-     container quic-lb {
+     list cid-configs {
+       key "config-rotation-bits";
 
-
-
-Duke & Banks              Expires 6 August 2021                [Page 33]
-
-Internet-Draft                   QUIC-LB                   February 2021
-
-
-       presence "The container for QUIC-LB configuration.";
-
-       description
-         "QUIC-LB container.";
-
-       typedef quic-lb-key {
-         type yang:hex-string;
-         length 47;
+       leaf config-rotation-bits {
+         type uint8 {
+           range "0..2";
+         }
+         mandatory true;
          description
-           "This is a 16-byte key, represented with 47 bytes"
+           "Identifier for this CID configuration.";
        }
 
-       list cid-configs {
-         key "config-rotation-bits";
+       leaf first-octet-encodes-cid-length {
+         type boolean;
+         default false;
+         description
+           "If true, the six least significant bits of the first CID
+            octet encode the CID length minus one.";
+       }
 
-         leaf config-rotation-bits {
+       container server-ids {
+         mandatory true;
+
+         leaf server-id-length {
            type uint8 {
-             range "0..2";
+             range "1..18";
            }
            mandatory true;
            description
-             "Identifier for this CID configuration.";
+             "Length (in octets) of a server ID. Further range-limited
+             by sid-allocation and routing-algorithm.";
          }
 
-         leaf first-octet-encodes-cid-length {
-           type boolean;
-           default false;
-           description
-             "If true, the six least significant bits of the first CID
-              octet encode the CID length minus one."
-         }
-
-         container server-ids {
-           mandatory true;
-
-           leaf server-id-length {
-             type uint8 {
-               range "1..18";
-             }
-             mandatory true;
-             description
-               "Length (in octets) of a server ID. Further range-limited
-               by sid-allocation and routing-algorithm.";
-           }
-
-           choice sid-allocation {
-             case dynamic {
-               leaf lb-timeout {
+         choice sid-allocation {
+           case dynamic {
+             leaf lb-timeout {
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 34]
+Duke & Banks              Expires 7 August 2021                [Page 34]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-                 type uint32;
-                 mandatory true;
-                 description
-                   "Time (in seconds) to keep a server ID allocation if
-                    no packets with that server ID arrive."
-               }
-             }
-
-             case static {
-               list mappings {
-                 key "server-id";
-
-                 leaf server-id {
-                   type yang:hex-string;
-                   mandatory true;
-                   must 'string-length(.) = 3 * ../server-id-length - 1'
-                   description
-                     "An allocated server ID";
-                 }
-
-                 leaf server-address {
-                   type inet:ip-address;
-                   mandatory true;
-                   description
-                     "Destination address corresponding to the server ID";
-                   }
-                 }
+               type uint32;
+               mandatory true;
+               description
+                 "Time (in seconds) to keep a server ID allocation if
+                  no packets with that server ID arrive.";
              }
            }
 
-           choice routing-algorithm {
-             case plaintext { }
+           case static {
+             list mappings {
+               key "server-id";
 
-             case stream-cipher {
-               leaf key {
-                 type quic-lb-key;
+               leaf server-id {
+                 type yang:hex-string;
                  mandatory true;
+                 must 'string-length(.) = 3 * ../server-id-length - 1'
                  description
-                   "CID key"
+                   "An allocated server ID";
                }
 
-               leaf nonce-length {
-                 type uint8 {
-                   range "8..16";
-                   default 8;
-                 }
+               leaf server-address {
+                 type inet:ip-address;
+                 mandatory true;
                  description
-                   "Length, in octets, of the nonce"
+                   "Destination address corresponding to the server ID";
+               }
+             }
+           }
+         }
+
+         choice routing-algorithm {
+           case plaintext { }
+
+           case stream-cipher {
+             leaf key {
+               type quic-lb-key;
+               mandatory true;
+               description
+                 "CID key";
+             }
+
+             leaf nonce-length {
+               type uint8 {
+                 range "8..16";
+                 default 8;
+               }
+               description
+                 "Length, in octets, of the nonce";
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 35]
+Duke & Banks              Expires 7 August 2021                [Page 35]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-               }
              }
+           }
 
-             case block-cipher {
-               leaf key {
-                 type quic-lb-key;
-                 mandatory true;
-                 description
-                   "CID key"
-               }
+           case block-cipher {
+             leaf key {
+               type quic-lb-key;
+               mandatory true;
+               description
+                 "CID key";
              }
            }
          }
        }
+     }
 
-       container retry-service-config {
-         leaf-list supported-versions {
-           type uint32;
-           mandatory true;
-           description
-             "QUIC versions that the retry service supports. If empty, there
-              is no retry service.";
+     container retry-service-config {
+       leaf-list supported-versions {
+         type uint32;
+         mandatory true;
+         description
+           "QUIC versions that the retry service supports. If empty, there
+            is no retry service.";
+       }
+
+       leaf unsupported-version-default {
+         type enumeration {
+           enum allow;
+           enum deny;
          }
+         default allow;
+         description
+           "Are unsupported versions not in version-exceptions allowed
+            or denied?";
+       }
 
-         leaf unsupported-version-default {
-           type enumeration {
-             enum allow;
-             enum deny;
-           }
-           default allow;
-           description
-             "Are unsupported versions not in version-exceptions allowed
-              or denied?"
-         }
+       leaf-list version-exceptions {
+         type uint32;
+         description
+           "Exceptions to the default-deny or default-allow rule.";
+       }
 
-         leaf-list version-exceptions {
-           type uint32;
-           description
-             "Exceptions to the default-deny or default-allow rule."
-         }
+       choice retry-algorithm {
+         case non-shared-state { }
 
-         choice retry-algorithm {
-           case non-shared-state { }
-
-           case shared-state {
-             list token-keys {
-               key "key-sequence-number";
+         case shared-state {
+           list token-keys {
+             key "key-sequence-number";
 
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 36]
+Duke & Banks              Expires 7 August 2021                [Page 36]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-               leaf key-sequence-number {
-                 type uint8;
-                 mandatory true;
-                 description
-                   "Identifies the key used to encrypt the token";
-               }
+             leaf key-sequence-number {
+               type uint8;
+               mandatory true;
+               description
+                 "Identifies the key used to encrypt the token";
+             }
 
-               leaf token-key {
-                 type quic-lb-key;
-                 mandatory true;
-                 description
-                   "16-byte key to encrypt the token";
-               }
+             leaf token-key {
+               type quic-lb-key;
+               mandatory true;
+               description
+                 "16-byte key to encrypt the token";
+             }
 
-               leaf token-iv {
-                 type yang:hex-string {
-                   length 23;
-                 }
-                 mandatory true;
-                 description
-                   "8-byte IV to encrypt the token, encoded in 23 bytes";
+             leaf token-iv {
+               type yang:hex-string {
+                 length 23;
                }
+               mandatory true;
+               description
+                 "8-byte IV to encrypt the token, encoded in 23 bytes";
              }
            }
          }
        }
-    }
+     }
+  }
 }
 
 A.1.  Tree Diagram
@@ -2069,7 +2069,7 @@ A.1.  Tree Diagram
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 37]
+Duke & Banks              Expires 7 August 2021                [Page 37]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2125,7 +2125,7 @@ Appendix B.  Load Balancer Test Vectors
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 38]
+Duke & Banks              Expires 7 August 2021                [Page 38]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2181,7 +2181,7 @@ B.1.  Plaintext Connection ID Algorithm
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 39]
+Duke & Banks              Expires 7 August 2021                [Page 39]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2237,7 +2237,7 @@ B.2.  Stream Cipher Connection ID Algorithm
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 40]
+Duke & Banks              Expires 7 August 2021                [Page 40]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2293,7 +2293,7 @@ B.3.  Block Cipher Connection ID Algorithm
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 41]
+Duke & Banks              Expires 7 August 2021                [Page 41]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2349,7 +2349,7 @@ D.2.  since draft-ietf-quic-load-balancers-04
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 42]
+Duke & Banks              Expires 7 August 2021                [Page 42]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2405,7 +2405,7 @@ D.5.  since-draft-ietf-quic-load-balancers-01
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 43]
+Duke & Banks              Expires 7 August 2021                [Page 43]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2461,7 +2461,7 @@ D.11.  Since draft-duke-quic-load-balancers-02
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 44]
+Duke & Banks              Expires 7 August 2021                [Page 44]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
@@ -2517,4 +2517,4 @@ Authors' Addresses
 
 
 
-Duke & Banks              Expires 6 August 2021                [Page 45]
+Duke & Banks              Expires 7 August 2021                [Page 45]
