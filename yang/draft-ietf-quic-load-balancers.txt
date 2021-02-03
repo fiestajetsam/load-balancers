@@ -142,7 +142,7 @@ Internet-Draft                   QUIC-LB                   February 2021
      12.2.  Informative References . . . . . . . . . . . . . . . . .  32
    Appendix A.  QUIC-LB YANG Model . . . . . . . . . . . . . . . . .  32
      A.1.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .  38
-   Appendix B.  Load Balancer Test Vectors . . . . . . . . . . . . .  38
+   Appendix B.  Load Balancer Test Vectors . . . . . . . . . . . . .  39
      B.1.  Plaintext Connection ID Algorithm . . . . . . . . . . . .  39
      B.2.  Stream Cipher Connection ID Algorithm . . . . . . . . . .  40
      B.3.  Block Cipher Connection ID Algorithm  . . . . . . . . . .  41
@@ -1783,7 +1783,7 @@ file "ietf-quic-lb@2021-02-02.yang"
 
 module ietf-quic-lb {
   yang-version "1.1";
-  namespace "urn:ietf:params:xml:ns:yang:ietf-quic";
+  namespace "urn:ietf:params:xml:ns:yang:ietf-quic-lb";
   prefix "quic-lb";
 
 
@@ -1795,7 +1795,13 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 
   import ietf-yang-types {
-    prefix "yang";
+    prefix yang;
+    reference
+      "RFC 6991: Common YANG Data Types.";
+  }
+
+  import ietf-inet-types {
+    prefix inet;
     reference
       "RFC 6991: Common YANG Data Types.";
   }
@@ -1836,12 +1842,6 @@ Internet-Draft                   QUIC-LB                   February 2021
 
    revision "2021-01-29" {
      description
-       "Initial Version";
-     reference
-       "RFC XXXX, QUIC-LB: Generating Routable QUIC Connection IDs";
-   }
-
-   container quic-lb {
 
 
 
@@ -1850,6 +1850,12 @@ Duke & Banks              Expires 7 August 2021                [Page 33]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+       "Initial Version";
+     reference
+       "RFC XXXX, QUIC-LB: Generating Routable QUIC Connection IDs";
+   }
+
+   container quic-lb {
      presence "The container for QUIC-LB configuration.";
 
      description
@@ -1892,12 +1898,6 @@ Internet-Draft                   QUIC-LB                   February 2021
          leaf server-id-length {
            type uint8 {
              range "1..18";
-           }
-           mandatory true;
-           description
-             "Length (in octets) of a server ID. Further range-limited
-             by sid-allocation and routing-algorithm.";
-         }
 
 
 
@@ -1905,6 +1905,13 @@ Duke & Banks              Expires 7 August 2021                [Page 34]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+           }
+           mandatory true;
+           description
+             "Length (in octets) of a server ID. Further range-limited
+             by sid-allocation and routing-algorithm.";
+         }
 
          choice sid-allocation {
            description "Server ID allocation method";
@@ -1947,13 +1954,6 @@ Internet-Draft                   QUIC-LB                   February 2021
 
            case plaintext { }
 
-           case stream-cipher {
-             leaf stream-key {
-               type quic-lb-key;
-               mandatory true;
-               description
-                 "CID key";
-             }
 
 
 
@@ -1961,6 +1961,14 @@ Duke & Banks              Expires 7 August 2021                [Page 35]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+           case stream-cipher {
+             leaf stream-key {
+               type quic-lb-key;
+               mandatory true;
+               description
+                 "CID key";
+             }
 
              leaf nonce-length {
                type uint8 {
@@ -2002,14 +2010,6 @@ Internet-Draft                   QUIC-LB                   February 2021
            enum deny {
              description "Unsupported versions denied by default";
            }
-         }
-         default allow;
-         description
-           "Are unsupported versions not in version-exceptions allowed
-            or denied?";
-       }
-
-       leaf-list version-exceptions {
 
 
 
@@ -2018,6 +2018,14 @@ Duke & Banks              Expires 7 August 2021                [Page 36]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+         }
+         default allow;
+         description
+           "Are unsupported versions not in version-exceptions allowed
+            or denied?";
+       }
+
+       leaf-list version-exceptions {
          type uint32;
          description
            "Exceptions to the default-deny or default-allow rule.";
@@ -2032,9 +2040,8 @@ Internet-Draft                   QUIC-LB                   February 2021
 
          case shared-state {
            list token-keys {
-             description "list of active keys, for key rotation purposes.";
-
              key "key-sequence-number";
+             description "list of active keys, for key rotation purposes.";
 
              leaf key-sequence-number {
                type uint8;
@@ -2059,13 +2066,6 @@ Internet-Draft                   QUIC-LB                   February 2021
                  "8-byte IV to encrypt the token, encoded in 23 bytes";
              }
            }
-         }
-       }
-     }
-  }
-}
-
-
 
 
 
@@ -2073,6 +2073,12 @@ Duke & Banks              Expires 7 August 2021                [Page 37]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+         }
+       }
+     }
+  }
+}
 
 A.1.  Tree Diagram
 
@@ -2116,12 +2122,6 @@ A.1.  Tree Diagram
       |  |  |  |   +--rw token-key                  yang:hex-string
       |  |  |  +   +--rw token-iv                   yang:hex-string
 
-Appendix B.  Load Balancer Test Vectors
-
-   Each section of this draft includes multiple sets of load balancer
-   configuration, each of which has five examples of server ID and
-   server use bytes and how they are encoded in a CID.
-
 
 
 
@@ -2129,6 +2129,12 @@ Duke & Banks              Expires 7 August 2021                [Page 38]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+Appendix B.  Load Balancer Test Vectors
+
+   Each section of this draft includes multiple sets of load balancer
+   configuration, each of which has five examples of server ID and
+   server use bytes and how they are encoded in a CID.
 
    In some cases, there are no server use bytes.  Note that, for
    simplicity, the first octet bits used for neither config rotation nor
@@ -2172,12 +2178,6 @@ B.1.  Plaintext Connection ID Algorithm
 
    LB configuration: cr_bits 0x0 length_self_encoding: y sid_len 5
 
-   cid 05bdcd8d0b1d sid bdcd8d0b1d su cid 06aee673725a63 sid aee673725a
-   su 63 cid 07bbf338ddbf37f4 sid bbf338ddbf su 37f4 cid
-   08fbbca64c26756840 sid fbbca64c26 su 756840 cid 09e7737c495b93894e34
-   sid e7737c495b su 93894e34
-
-
 
 
 
@@ -2185,6 +2185,11 @@ Duke & Banks              Expires 7 August 2021                [Page 39]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+   cid 05bdcd8d0b1d sid bdcd8d0b1d su cid 06aee673725a63 sid aee673725a
+   su 63 cid 07bbf338ddbf37f4 sid bbf338ddbf su 37f4 cid
+   08fbbca64c26756840 sid fbbca64c26 su 756840 cid 09e7737c495b93894e34
+   sid e7737c495b su 93894e34
 
 B.2.  Stream Cipher Connection ID Algorithm
 
@@ -2229,11 +2234,6 @@ B.2.  Stream Cipher Connection ID Algorithm
 
    LB configuration: cr_bits 0x0 length_self_encoding: y nonce_len 8
    sid_len 5 key 484b2ed942d9f4765e45035da3340423
-
-
-
-
-
 
 
 
