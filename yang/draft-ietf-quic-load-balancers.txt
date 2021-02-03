@@ -141,7 +141,7 @@ Internet-Draft                   QUIC-LB                   February 2021
      12.1.  Normative References . . . . . . . . . . . . . . . . . .  31
      12.2.  Informative References . . . . . . . . . . . . . . . . .  32
    Appendix A.  QUIC-LB YANG Model . . . . . . . . . . . . . . . . .  32
-     A.1.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .  37
+     A.1.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .  38
    Appendix B.  Load Balancer Test Vectors . . . . . . . . . . . . .  38
      B.1.  Plaintext Connection ID Algorithm . . . . . . . . . . . .  39
      B.2.  Stream Cipher Connection ID Algorithm . . . . . . . . . .  40
@@ -1779,7 +1779,7 @@ Appendix A.  QUIC-LB YANG Model
    This YANG model conforms to [RFC6020] and expresses a complete QUIC-
    LB configuration.
 
-file "ietf-quiclb@2021-01-29.yang"
+file "ietf-quic-lb@2021-02-02.yang"
 
 module ietf-quic-lb {
   yang-version "1.1";
@@ -1856,14 +1856,17 @@ Internet-Draft                   QUIC-LB                   February 2021
        "QUIC-LB container.";
 
      typedef quic-lb-key {
-       type yang:hex-string;
-       length 47;
+       type yang:hex-string {
+         length 47;
+       }
        description
          "This is a 16-byte key, represented with 47 bytes";
      }
 
      list cid-configs {
        key "config-rotation-bits";
+       description
+         "List up to three load balancer configurations";
 
        leaf config-rotation-bits {
          type uint8 {
@@ -1883,7 +1886,8 @@ Internet-Draft                   QUIC-LB                   February 2021
        }
 
        container server-ids {
-         mandatory true;
+         description
+           "Parameters for server IDs";
 
          leaf server-id-length {
            type uint8 {
@@ -1895,10 +1899,6 @@ Internet-Draft                   QUIC-LB                   February 2021
              by sid-allocation and routing-algorithm.";
          }
 
-         choice sid-allocation {
-           case dynamic {
-             leaf lb-timeout {
-
 
 
 Duke & Banks              Expires 7 August 2021                [Page 34]
@@ -1906,6 +1906,11 @@ Duke & Banks              Expires 7 August 2021                [Page 34]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+         choice sid-allocation {
+           description "Server ID allocation method";
+
+           case dynamic {
+             leaf lb-timeout {
                type uint32;
                mandatory true;
                description
@@ -1917,11 +1922,12 @@ Internet-Draft                   QUIC-LB                   February 2021
            case static {
              list mappings {
                key "server-id";
+               description "Statically allocated Server IDs";
 
                leaf server-id {
                  type yang:hex-string;
+                 must 'string-length(.) = 3 * ../../server-id-length - 1';
                  mandatory true;
-                 must 'string-length(.) = 3 * ../server-id-length - 1'
                  description
                    "An allocated server ID";
                }
@@ -1937,23 +1943,17 @@ Internet-Draft                   QUIC-LB                   February 2021
          }
 
          choice routing-algorithm {
+           description "Chosen QUIC-LB Routing Algorithm";
+
            case plaintext { }
 
            case stream-cipher {
-             leaf key {
+             leaf stream-key {
                type quic-lb-key;
                mandatory true;
                description
                  "CID key";
              }
-
-             leaf nonce-length {
-               type uint8 {
-                 range "8..16";
-                 default 8;
-               }
-               description
-                 "Length, in octets, of the nonce";
 
 
 
@@ -1962,11 +1962,18 @@ Duke & Banks              Expires 7 August 2021                [Page 35]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+             leaf nonce-length {
+               type uint8 {
+                 range "8..16";
+               }
+               default 8;
+               description
+                 "Length, in octets, of the nonce";
              }
            }
 
            case block-cipher {
-             leaf key {
+             leaf block-key {
                type quic-lb-key;
                mandatory true;
                description
@@ -1978,9 +1985,10 @@ Internet-Draft                   QUIC-LB                   February 2021
      }
 
      container retry-service-config {
+       description "Configuration of Retry Service";
+
        leaf-list supported-versions {
          type uint32;
-         mandatory true;
          description
            "QUIC versions that the retry service supports. If empty, there
             is no retry service.";
@@ -1988,8 +1996,12 @@ Internet-Draft                   QUIC-LB                   February 2021
 
        leaf unsupported-version-default {
          type enumeration {
-           enum allow;
-           enum deny;
+           enum allow {
+             description "Unsupported versions admitted by default";
+           }
+           enum deny {
+             description "Unsupported versions denied by default";
+           }
          }
          default allow;
          description
@@ -1998,18 +2010,6 @@ Internet-Draft                   QUIC-LB                   February 2021
        }
 
        leaf-list version-exceptions {
-         type uint32;
-         description
-           "Exceptions to the default-deny or default-allow rule.";
-       }
-
-       choice retry-algorithm {
-         case non-shared-state { }
-
-         case shared-state {
-           list token-keys {
-             key "key-sequence-number";
-
 
 
 
@@ -2017,6 +2017,24 @@ Duke & Banks              Expires 7 August 2021                [Page 36]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+         type uint32;
+         description
+           "Exceptions to the default-deny or default-allow rule.";
+       }
+
+       choice retry-algorithm {
+         description
+           "Coordination algorithm for Retry Services. If supported-
+            versions is an empty list, there is no functioning service.";
+
+         case non-shared-state { }
+
+         case shared-state {
+           list token-keys {
+             description "list of active keys, for key rotation purposes.";
+
+             key "key-sequence-number";
 
              leaf key-sequence-number {
                type uint8;
@@ -2047,24 +2065,6 @@ Internet-Draft                   QUIC-LB                   February 2021
   }
 }
 
-A.1.  Tree Diagram
-
-   This summary of the YANG model uses the notation in [RFC8340].
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2073,6 +2073,10 @@ Duke & Banks              Expires 7 August 2021                [Page 37]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+A.1.  Tree Diagram
+
+   This summary of the YANG model uses the notation in [RFC8340].
 
  module: ietf-quic-lb
    +--rw quic-lb
@@ -2093,10 +2097,10 @@ Internet-Draft                   QUIC-LB                   February 2021
       |  +--rw (routing-algorithm)?
       |  |  +--:(plaintext)
       |  |  +--:(stream-cipher)
-      |  |  |  +--rw key                        yang:hex-string
+      |  |  |  +--rw stream-key                 yang:hex-string
       |  |  |  +--rw nonce-length               uint8
       |  |  +--: (block-cipher)
-      |  |  |  +--rw key                        yang:hex-string
+      |  |  |  +--rw block-key                  yang:hex-string
       +--ro retry-service-config
       |  +--rw supported-versions*
       |  |  +--rw version                       uint32
@@ -2117,10 +2121,6 @@ Appendix B.  Load Balancer Test Vectors
    Each section of this draft includes multiple sets of load balancer
    configuration, each of which has five examples of server ID and
    server use bytes and how they are encoded in a CID.
-
-
-
-
 
 
 
