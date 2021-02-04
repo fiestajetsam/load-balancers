@@ -147,18 +147,18 @@ Internet-Draft                   QUIC-LB                   February 2021
      A.1.  Tree Diagram  . . . . . . . . . . . . . . . . . . . . . .  39
    Appendix B.  Load Balancer Test Vectors . . . . . . . . . . . . .  39
      B.1.  Plaintext Connection ID Algorithm . . . . . . . . . . . .  40
-     B.2.  Stream Cipher Connection ID Algorithm . . . . . . . . . .  40
-     B.3.  Block Cipher Connection ID Algorithm  . . . . . . . . . .  41
+     B.2.  Stream Cipher Connection ID Algorithm . . . . . . . . . .  41
+     B.3.  Block Cipher Connection ID Algorithm  . . . . . . . . . .  42
    Appendix C.  Acknowledgments  . . . . . . . . . . . . . . . . . .  43
    Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  43
      D.1.  since draft-ietf-quic-load-balancers-05 . . . . . . . . .  43
-     D.2.  since draft-ietf-quic-load-balancers-04 . . . . . . . . .  43
+     D.2.  since draft-ietf-quic-load-balancers-04 . . . . . . . . .  44
      D.3.  since-draft-ietf-quic-load-balancers-03 . . . . . . . . .  44
      D.4.  since-draft-ietf-quic-load-balancers-02 . . . . . . . . .  44
      D.5.  since-draft-ietf-quic-load-balancers-01 . . . . . . . . .  44
-     D.6.  since-draft-ietf-quic-load-balancers-00 . . . . . . . . .  44
-     D.7.  Since draft-duke-quic-load-balancers-06 . . . . . . . . .  44
-     D.8.  Since draft-duke-quic-load-balancers-05 . . . . . . . . .  44
+     D.6.  since-draft-ietf-quic-load-balancers-00 . . . . . . . . .  45
+     D.7.  Since draft-duke-quic-load-balancers-06 . . . . . . . . .  45
+     D.8.  Since draft-duke-quic-load-balancers-05 . . . . . . . . .  45
      D.9.  Since draft-duke-quic-load-balancers-04 . . . . . . . . .  45
      D.10. Since draft-duke-quic-load-balancers-03 . . . . . . . . .  45
      D.11. Since draft-duke-quic-load-balancers-02 . . . . . . . . .  45
@@ -170,14 +170,14 @@ Duke & Banks              Expires 8 August 2021                 [Page 3]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-     D.12. Since draft-duke-quic-load-balancers-01 . . . . . . . . .  45
-     D.13. Since draft-duke-quic-load-balancers-00 . . . . . . . . .  45
+     D.12. Since draft-duke-quic-load-balancers-01 . . . . . . . . .  46
+     D.13. Since draft-duke-quic-load-balancers-00 . . . . . . . . .  46
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  46
 
 1.  Introduction
 
    QUIC packets [QUIC-TRANSPORT] usually contain a connection ID to
-   allow endpoints to associate packets with different address/port
+   allow endpoints to associate packets with different address/ port
    4-tuples to the same connection context.  This feature makes
    connections robust in the event of NAT rebinding.  QUIC endpoints
    usually designate the connection ID which peers use to address
@@ -1807,20 +1807,17 @@ Internet-Draft                   QUIC-LB                   February 2021
 13.1.  Normative References
 
    [QUIC-INVARIANTS]
-              Thomson, M., Ed., "Version-Independent Properties of
-              QUIC", Work in Progress, Internet-Draft, draft-ietf-quic-
-              invariants,
-              <https://tools.ietf.org/html/draft-ietf-quic-invariants>.
-
-   [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using TLS to Secure
-              QUIC", Work in Progress, Internet-Draft, draft-ietf-quic-
-              tls, <https://tools.ietf.org/html/draft-ietf-quic-tls>.
+              Thomson, M., "Version-Independent Properties of QUIC",
+              Work in Progress, Internet-Draft, draft-ietf-quic-
+              invariants-13, 14 January 2021, <http://www.ietf.org/
+              internet-drafts/draft-ietf-quic-invariants-13.txt>.
 
    [QUIC-TRANSPORT]
-              Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
-              Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport,
-              <https://tools.ietf.org/html/draft-ietf-quic-transport>.
+              Iyengar, J. and M. Thomson, "QUIC: A UDP-Based Multiplexed
+              and Secure Transport", Work in Progress, Internet-Draft,
+              draft-ietf-quic-transport-34, 14 January 2021,
+              <http://www.ietf.org/internet-drafts/draft-ietf-quic-
+              transport-34.txt>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
@@ -1833,15 +1830,18 @@ Internet-Draft                   QUIC-LB                   February 2021
 
 13.2.  Informative References
 
+   [QUIC-TLS] Thomson, M. and S. Turner, "Using TLS to Secure QUIC",
+              Work in Progress, Internet-Draft, draft-ietf-quic-tls-34,
+              14 January 2021, <http://www.ietf.org/internet-drafts/
+              draft-ietf-quic-tls-34.txt>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
-              the Network Configuration Protocol (NETCONF)", RFC 6020,
-              DOI 10.17487/RFC6020, October 2010,
-              <https://www.rfc-editor.org/info/rfc6020>.
+
+
 
 
 
@@ -1849,6 +1849,11 @@ Duke & Banks              Expires 8 August 2021                [Page 33]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+   [RFC6020]  Bjorklund, M., Ed., "YANG - A Data Modeling Language for
+              the Network Configuration Protocol (NETCONF)", RFC 6020,
+              DOI 10.17487/RFC6020, October 2010,
+              <https://www.rfc-editor.org/info/rfc6020>.
 
    [RFC7696]  Housley, R., "Guidelines for Cryptographic Algorithm
               Agility and Selecting Mandatory-to-Implement Algorithms",
@@ -1893,11 +1898,6 @@ module ietf-quic-lb {
 
   description
     "This module enables the explicit cooperation of QUIC servers with
-     trusted intermediaries without breaking important protocol features.
-
-     Copyright (c) 2021 IETF Trust and the persons identified as
-     authors of the code.  All rights reserved.
-
 
 
 
@@ -1905,6 +1905,11 @@ Duke & Banks              Expires 8 August 2021                [Page 34]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+     trusted intermediaries without breaking important protocol features.
+
+     Copyright (c) 2021 IETF Trust and the persons identified as
+     authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
      without modification, is permitted pursuant to, and subject to
@@ -1949,11 +1954,6 @@ Internet-Draft                   QUIC-LB                   February 2021
       description
         "List up to three load balancer configurations";
 
-      leaf config-rotation-bits {
-        type uint8 {
-          range "0..2";
-        }
-        mandatory true;
 
 
 
@@ -1962,6 +1962,11 @@ Duke & Banks              Expires 8 August 2021                [Page 35]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+      leaf config-rotation-bits {
+        type uint8 {
+          range "0..2";
+        }
+        mandatory true;
         description
           "Identifier for this CID configuration.";
       }
@@ -2005,11 +2010,6 @@ Internet-Draft                   QUIC-LB                   February 2021
 
       leaf server-id-length {
         type uint8 {
-          range "1..18";
-        }
-        must '(../lb-timeout and . <= 7) or
-               (not(../lb-timeout) and
-                (not(../cid-key) and . <= 16) or
 
 
 
@@ -2018,6 +2018,11 @@ Duke & Banks              Expires 8 August 2021                [Page 36]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+          range "1..18";
+        }
+        must '(../lb-timeout and . <= 7) or
+               (not(../lb-timeout) and
+                (not(../cid-key) and . <= 16) or
                 ((../nonce-length) and . <= (19 - ../nonce-length)) or
                 ((../cid-key) and not(../nonce-length) and . <= 12))' {
           error-message
@@ -2061,11 +2066,6 @@ Internet-Draft                   QUIC-LB                   February 2021
       leaf-list supported-versions {
         type uint32;
         description
-          "QUIC versions that the retry service supports. If empty, there
-           is no retry service.";
-      }
-
-      leaf unsupported-version-default {
 
 
 
@@ -2074,6 +2074,11 @@ Duke & Banks              Expires 8 August 2021                [Page 37]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+          "QUIC versions that the retry service supports. If empty, there
+           is no retry service.";
+      }
+
+      leaf unsupported-version-default {
         type enumeration {
           enum allow {
             description "Unsupported versions admitted by default";
@@ -2117,11 +2122,6 @@ Internet-Draft                   QUIC-LB                   February 2021
         leaf token-iv {
           type yang:hex-string {
             length 23;
-          }
-          mandatory true;
-          description
-            "8-byte IV to encrypt the token, encoded in 23 bytes";
-        }
 
 
 
@@ -2130,6 +2130,11 @@ Duke & Banks              Expires 8 August 2021                [Page 38]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+          }
+          mandatory true;
+          description
+            "8-byte IV to encrypt the token, encoded in 23 bytes";
+        }
       }
     }
   }
@@ -2171,13 +2176,8 @@ Appendix B.  Load Balancer Test Vectors
    configuration, each of which has five examples of server ID and
    server use bytes and how they are encoded in a CID.
 
-   In some cases, there are no server use bytes.  Note that, for
-   simplicity, the first octet bits used for neither config rotation nor
-   length self-encoding are random, rather than listed in the server use
-   field.  Therefore, a server implementation using these parameters may
-   generate CIDs with a slightly different first octet.
 
-   This section uses the following abbreviations:
+
 
 
 
@@ -2185,6 +2185,14 @@ Duke & Banks              Expires 8 August 2021                [Page 39]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+   In some cases, there are no server use bytes.  Note that, for
+   simplicity, the first octet bits used for neither config rotation nor
+   length self-encoding are random, rather than listed in the server use
+   field.  Therefore, a server implementation using these parameters may
+   generate CIDs with a slightly different first octet.
+
+   This section uses the following abbreviations:
 
    cid Connection ID cr_bits Config Rotation Bits LB Load Balancer sid
    Server ID sid_len Server ID length su Server Use Bytes
@@ -2225,14 +2233,6 @@ B.1.  Plaintext Connection ID Algorithm
    08fbbca64c26756840 sid fbbca64c26 su 756840 cid 09e7737c495b93894e34
    sid e7737c495b su 93894e34
 
-B.2.  Stream Cipher Connection ID Algorithm
-
-   In each case below, the server is using a plain text nonce value of
-   zero.
-
-   LB configuration: cr_bits 0x0 length_self_encoding: y nonce_len 12
-   sid_len 1 key 4d9d0fd25a25e7f321ef464e13f9fa3d
-
 
 
 
@@ -2241,6 +2241,14 @@ Duke & Banks              Expires 8 August 2021                [Page 40]
 
 Internet-Draft                   QUIC-LB                   February 2021
 
+
+B.2.  Stream Cipher Connection ID Algorithm
+
+   In each case below, the server is using a plain text nonce value of
+   zero.
+
+   LB configuration: cr_bits 0x0 length_self_encoding: y nonce_len 12
+   sid_len 1 key 4d9d0fd25a25e7f321ef464e13f9fa3d
 
    cid 0d69fe8ab8293680395ae256e89c sid c5 su cid
    0e420d74ed99b985e10f5073f43027 sid d5 su 27 cid
@@ -2278,6 +2286,18 @@ Internet-Draft                   QUIC-LB                   February 2021
    LB configuration: cr_bits 0x0 length_self_encoding: y nonce_len 8
    sid_len 5 key 484b2ed942d9f4765e45035da3340423
 
+
+
+
+
+
+
+
+Duke & Banks              Expires 8 August 2021                [Page 41]
+
+Internet-Draft                   QUIC-LB                   February 2021
+
+
    cid 0da995b7537db605bfd3a38881ae sid 391a7840dc su cid
    0ed8d02d55b91d06443540d1bf6e98 sid 10f7f7b284 su 98 cid
    0f3f74be6d46a84ccb1fd1ee92cdeaf2 sid 0606918fc0 su eaf2 cid
@@ -2288,15 +2308,6 @@ B.3.  Block Cipher Connection ID Algorithm
 
    LB configuration: cr_bits 0x0 length_self_encoding: y sid_len 1 key
    411592e4160268398386af84ea7505d4
-
-
-
-
-
-Duke & Banks              Expires 8 August 2021                [Page 41]
-
-Internet-Draft                   QUIC-LB                   February 2021
-
 
    cid 10564f7c0df399f6d93bdddb1a03886f25 sid 23 su
    05231748a80884ed58007847eb9fd0 cid 10d5c03f9dd765d73b3d8610b244f74d02
@@ -2334,6 +2345,15 @@ Internet-Draft                   QUIC-LB                   February 2021
    LB configuration: cr_bits 0x0 length_self_encoding: n sid_len 4 key
    e787a3a491551fb2b4901a3fa15974f3
 
+
+
+
+
+Duke & Banks              Expires 8 August 2021                [Page 42]
+
+Internet-Draft                   QUIC-LB                   February 2021
+
+
    cid 26125351da12435615e3be6b16fad35560 sid 0cb227d3 su
    65b40b1ab54e05bff55db046 cid 14de05fc84e41b611dfbe99ed5b1c9d563 sid
    6a0f23ad su d73bee2f3a7e72b3ffea52d9 cid
@@ -2345,14 +2365,6 @@ Internet-Draft                   QUIC-LB                   February 2021
 
    LB configuration: cr_bits 0x0 length_self_encoding: y sid_len 5 key
    d5a6d7824336fbe0f25d28487cdda57c
-
-
-
-
-Duke & Banks              Expires 8 August 2021                [Page 42]
-
-Internet-Draft                   QUIC-LB                   February 2021
-
 
    cid 10a2794871aadb20ddf274a95249e57fde sid 82d3b0b1a1 su
    0935471478c2edb8120e60 cid 108122fe80a6e546a285c475a3b8613ec9 sid
@@ -2390,6 +2402,14 @@ D.1.  since draft-ietf-quic-load-balancers-05
 
    *  Switched to notation from quic-transport
 
+
+
+
+Duke & Banks              Expires 8 August 2021                [Page 43]
+
+Internet-Draft                   QUIC-LB                   February 2021
+
+
 D.2.  since draft-ietf-quic-load-balancers-04
 
    *  Rearranged the shared-state retry token to simplify token
@@ -2402,13 +2422,6 @@ D.2.  since draft-ietf-quic-load-balancers-04
    *  Eliminated zero padding from the test vectors
 
    *  Added server use bytes to the test vectors
-
-
-
-Duke & Banks              Expires 8 August 2021                [Page 43]
-
-Internet-Draft                   QUIC-LB                   February 2021
-
 
    *  Additional compliant DCID criteria
 
@@ -2444,6 +2457,15 @@ D.5.  since-draft-ietf-quic-load-balancers-01
 
    *  Discussed load balancer chains
 
+
+
+
+
+Duke & Banks              Expires 8 August 2021                [Page 44]
+
+Internet-Draft                   QUIC-LB                   February 2021
+
+
 D.6.  since-draft-ietf-quic-load-balancers-00
 
    *  Removed in-band protocol from the document
@@ -2457,14 +2479,6 @@ D.8.  Since draft-duke-quic-load-balancers-05
    *  Editorial changes
 
    *  Made load balancer behavior independent of QUIC version
-
-
-
-
-Duke & Banks              Expires 8 August 2021                [Page 44]
-
-Internet-Draft                   QUIC-LB                   February 2021
-
 
    *  Got rid of token in stream cipher encoding, because server might
       not have it
@@ -2500,6 +2514,14 @@ D.11.  Since draft-duke-quic-load-balancers-02
 
    *  Reformatted QUIC-LB packets
 
+
+
+
+Duke & Banks              Expires 8 August 2021                [Page 45]
+
+Internet-Draft                   QUIC-LB                   February 2021
+
+
 D.12.  Since draft-duke-quic-load-balancers-01
 
    *  Complete rewrite
@@ -2514,14 +2536,6 @@ D.13.  Since draft-duke-quic-load-balancers-00
 
    *  Added variable length connection IDs
 
-
-
-
-Duke & Banks              Expires 8 August 2021                [Page 45]
-
-Internet-Draft                   QUIC-LB                   February 2021
-
-
 Authors' Addresses
 
    Martin Duke
@@ -2534,20 +2548,6 @@ Authors' Addresses
    Microsoft
 
    Email: nibanks@microsoft.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
