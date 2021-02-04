@@ -2192,19 +2192,19 @@ Internet-Draft                   QUIC-LB                   February 2021
    field.  Therefore, a server implementation using these parameters may
    generate CIDs with a slightly different first octet.
 
-   This section uses the following abbreviations: ~~~ cid Connection ID
-   cr_bits Config Rotation Bits LB Load Balancer sid Server ID sid_len
-   Server ID length su Server Use Bytes ~~~
+   This section uses the following abbreviations:
+
+   cid      Connection ID
+   cr_bits  Config Rotation Bits
+   LB       Load Balancer
+   sid      Server ID
+   sid_len  Server ID length
+   su       Server Use Bytes
 
    All values except length_self_encoding and sid_len are expressed in
    hexidecimal format.
 
 B.1.  Plaintext Connection ID Algorithm
-
-
-
-
-
 
 
 
