@@ -10,7 +10,7 @@ Expires: 8 August 2021                                         Microsoft
 
 
             QUIC-LB: Generating Routable QUIC Connection IDs
-                   draft-ietf-quic-load-balancers-06
+                   draft-ietf-quic-load-balancers-07
 
 Abstract
 
@@ -151,17 +151,17 @@ Internet-Draft                   QUIC-LB                   February 2021
      B.3.  Block Cipher Connection ID Algorithm  . . . . . . . . . .  42
    Appendix C.  Acknowledgments  . . . . . . . . . . . . . . . . . .  44
    Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  44
-     D.1.  since draft-ietf-quic-load-balancers-05 . . . . . . . . .  44
-     D.2.  since draft-ietf-quic-load-balancers-04 . . . . . . . . .  44
-     D.3.  since-draft-ietf-quic-load-balancers-03 . . . . . . . . .  44
-     D.4.  since-draft-ietf-quic-load-balancers-02 . . . . . . . . .  45
-     D.5.  since-draft-ietf-quic-load-balancers-01 . . . . . . . . .  45
-     D.6.  since-draft-ietf-quic-load-balancers-00 . . . . . . . . .  45
-     D.7.  Since draft-duke-quic-load-balancers-06 . . . . . . . . .  45
-     D.8.  Since draft-duke-quic-load-balancers-05 . . . . . . . . .  45
-     D.9.  Since draft-duke-quic-load-balancers-04 . . . . . . . . .  46
-     D.10. Since draft-duke-quic-load-balancers-03 . . . . . . . . .  46
-     D.11. Since draft-duke-quic-load-balancers-02 . . . . . . . . .  46
+     D.1.  since draft-ietf-quic-load-balancers-06 . . . . . . . . .  44
+     D.2.  since draft-ietf-quic-load-balancers-05 . . . . . . . . .  44
+     D.3.  since draft-ietf-quic-load-balancers-04 . . . . . . . . .  44
+     D.4.  since-draft-ietf-quic-load-balancers-03 . . . . . . . . .  44
+     D.5.  since-draft-ietf-quic-load-balancers-02 . . . . . . . . .  45
+     D.6.  since-draft-ietf-quic-load-balancers-01 . . . . . . . . .  45
+     D.7.  since-draft-ietf-quic-load-balancers-00 . . . . . . . . .  45
+     D.8.  Since draft-duke-quic-load-balancers-06 . . . . . . . . .  45
+     D.9.  Since draft-duke-quic-load-balancers-05 . . . . . . . . .  45
+     D.10. Since draft-duke-quic-load-balancers-04 . . . . . . . . .  46
+     D.11. Since draft-duke-quic-load-balancers-03 . . . . . . . . .  46
 
 
 
@@ -170,8 +170,9 @@ Duke & Banks              Expires 8 August 2021                 [Page 3]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-     D.12. Since draft-duke-quic-load-balancers-01 . . . . . . . . .  46
-     D.13. Since draft-duke-quic-load-balancers-00 . . . . . . . . .  46
+     D.12. Since draft-duke-quic-load-balancers-02 . . . . . . . . .  46
+     D.13. Since draft-duke-quic-load-balancers-01 . . . . . . . . .  46
+     D.14. Since draft-duke-quic-load-balancers-00 . . . . . . . . .  46
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  46
 
 1.  Introduction
@@ -217,7 +218,6 @@ Internet-Draft                   QUIC-LB                   February 2021
    counter Denial of Service attacks.  It also proposes a system for
    self-encoding connection ID length in all packets, so that crypto
    offload can consistently look up key information.
-
 
 
 
@@ -2425,7 +2425,9 @@ Appendix D.  Change Log
       *RFC Editor's Note:* Please remove this section prior to
       publication of a final version of this document.
 
-D.1.  since draft-ietf-quic-load-balancers-05
+D.1.  since draft-ietf-quic-load-balancers-06
+
+D.2.  since draft-ietf-quic-load-balancers-05
 
    *  Added low-config CID for further discussion
 
@@ -2437,7 +2439,7 @@ D.1.  since draft-ietf-quic-load-balancers-05
 
    *  Switched to notation from quic-transport
 
-D.2.  since draft-ietf-quic-load-balancers-04
+D.3.  since draft-ietf-quic-load-balancers-04
 
    *  Rearranged the shared-state retry token to simplify token
       processing
@@ -2452,11 +2454,9 @@ D.2.  since draft-ietf-quic-load-balancers-04
 
    *  Additional compliant DCID criteria
 
-D.3.  since-draft-ietf-quic-load-balancers-03
+D.4.  since-draft-ietf-quic-load-balancers-03
 
    *  Improved Config Rotation text
-
-   *  Added stream cipher test vectors
 
 
 
@@ -2466,9 +2466,11 @@ Duke & Banks              Expires 8 August 2021                [Page 44]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
+   *  Added stream cipher test vectors
+
    *  Deleted the Obfuscated CID algorithm
 
-D.4.  since-draft-ietf-quic-load-balancers-02
+D.5.  since-draft-ietf-quic-load-balancers-02
 
    *  Replaced stream cipher algorithm with three-pass version
 
@@ -2482,7 +2484,7 @@ D.4.  since-draft-ietf-quic-load-balancers-02
 
    *  Allow dropped long-header packets for known QUIC versions
 
-D.5.  since-draft-ietf-quic-load-balancers-01
+D.6.  since-draft-ietf-quic-load-balancers-01
 
    *  Test vectors for load balancer decoding
 
@@ -2492,15 +2494,15 @@ D.5.  since-draft-ietf-quic-load-balancers-01
 
    *  Discussed load balancer chains
 
-D.6.  since-draft-ietf-quic-load-balancers-00
+D.7.  since-draft-ietf-quic-load-balancers-00
 
    *  Removed in-band protocol from the document
 
-D.7.  Since draft-duke-quic-load-balancers-06
+D.8.  Since draft-duke-quic-load-balancers-06
 
    *  Switch to IETF WG draft.
 
-D.8.  Since draft-duke-quic-load-balancers-05
+D.9.  Since draft-duke-quic-load-balancers-05
 
    *  Editorial changes
 
@@ -2512,8 +2514,6 @@ D.8.  Since draft-duke-quic-load-balancers-05
    *  Defined "non-compliant DCID" and specified rules for handling
       them.
 
-   *  Added psuedocode for config schema
-
 
 
 
@@ -2522,11 +2522,13 @@ Duke & Banks              Expires 8 August 2021                [Page 45]
 Internet-Draft                   QUIC-LB                   February 2021
 
 
-D.9.  Since draft-duke-quic-load-balancers-04
+   *  Added psuedocode for config schema
+
+D.10.  Since draft-duke-quic-load-balancers-04
 
    *  Added standard for retry services
 
-D.10.  Since draft-duke-quic-load-balancers-03
+D.11.  Since draft-duke-quic-load-balancers-03
 
    *  Renamed Plaintext CID algorithm as Obfuscated CID
 
@@ -2536,7 +2538,7 @@ D.10.  Since draft-duke-quic-load-balancers-03
 
    *  Added self-encoding of CID length
 
-D.11.  Since draft-duke-quic-load-balancers-02
+D.12.  Since draft-duke-quic-load-balancers-02
 
    *  Added Config Rotation
 
@@ -2548,7 +2550,7 @@ D.11.  Since draft-duke-quic-load-balancers-02
 
    *  Reformatted QUIC-LB packets
 
-D.12.  Since draft-duke-quic-load-balancers-01
+D.13.  Since draft-duke-quic-load-balancers-01
 
    *  Complete rewrite
 
@@ -2556,7 +2558,7 @@ D.12.  Since draft-duke-quic-load-balancers-01
 
    *  Lightweight messages
 
-D.13.  Since draft-duke-quic-load-balancers-00
+D.14.  Since draft-duke-quic-load-balancers-00
 
    *  Converted to markdown
 
@@ -2568,8 +2570,6 @@ Authors' Addresses
    F5 Networks, Inc.
 
    Email: martin.h.duke@gmail.com
-
-
 
 
 
