@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-02-02T23:23:35.011562+00:00",
+  "timestamp": "2021-02-04T20:32:56.509763+00:00",
   "repo": "quicwg/load-balancers",
   "labels": [
     {
@@ -1562,7 +1562,7 @@
       "id": "MDU6SXNzdWU3ODczMTA5MDA=",
       "title": "Low-Config CID creating huge problems with coexistence of configurations",
       "url": "https://github.com/quicwg/load-balancers/issues/84",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -1571,8 +1571,8 @@
       "labels": [],
       "body": "For low-config CID (LCID), which dynamically allocates server IDs, the current editor's draft has a heuristic to extract a server ID from a client-generated non-compliant CID. The fundamental issue is that the server *has* to get an SID from an incoming Initial, even if the SR bits of the Connection ID imply that it doesn't map to the LCID config.\r\n\r\n> \r\n> If the DCID references the 4-tuple routing bits or an undefined configuration, use the following procedure to establish a predictable template for server ID extraction:\r\n> * Identify the instance of Low-Config CID configuration with the largest config rotation codepoint. For example, if configurations 0b10, 0b01, and 0b00 all use the low-config CID algorithm and have server ID lengths of 3, 5, and 7 octets, respectively, and a packet comes in with codepoint 0b11, the load balancer would extract 3 octets for the server ID.\r\n> * Extract the appropriate number of octets.\r\n> * If the server ID matches one already in the table, forward the packet to that server.\r\n> * If not, the load balancer runs the algorithm of its choosing and adds the extracted server ID to the table corresponding to the highest-value Low-Config CID Configuration codepoint.\r\n\r\nThis doesn't work with config rotation. The main principle in CR is that the load balancer needs to get the configuration first -- otherwise the server might generate CIDs that the LB can't route, and we break ongoing connections. Given that, we have a problem. Consider:\r\n\r\n1. LB and server both have LCID configuration 0b00 with SIDL of 1.\r\n2. LB gets LCID configuration 0b01 with an SIDL of 2.\r\n3. LB gets a packet with CR bits 0b01 and octets 2-3 0xfa13, and randomly forwards it to the server\r\n4. The LB will add an SID entry for 0xfa13, but the server will add an SID entry for 0xfa.\r\n5. The server will generate CIDs with CR 0xb00 and SID 0xfa, and the LB will not route them correctly.\r\n\r\nStated more generally: in the current design, the LB can never be sure if the server has a given configuration and that makes it very hard for the LB to infer what the server is going to do with a given CID to get an SID for its table. We don't even know if it's non-compliant at the server or not!\r\n\r\nThere are some potential fixes here:\r\n1) Give up on dynamic server ID allocation\r\n2) Have the LB keep track of config rotation bits it's observed in short header packets to each server -- this is an indication the server has the CR bits. This is also seems vulnerable to attack with injection of random short-header packets.\r\n3) Reserve the SID corresponding to *all* configurations when routing a packet. In effect, this makes it impossible to adapt the crypto algorithms to use dynamically allocated server ID and have them coexist with plaintext ones: the crypto algorithms will essentially have randomly distributed plaintext fields, so the table will fill up fast.\r\n4) Remove config rotation from dynamic allocation; this makes changes to config a site maintenance event. This also effectively prevents using crypto with dynamic allocation, because you can't rotate keys.\r\n5) Change the behavior of a server when it gets CR bits it doesn't understand. Don't extract a server ID. If the server has no IDs because it just booted, simply echo the client-generated CID. When the server gets a config that lets it extract an SID from this, or gets a CID on another connection that it can decode, then it can update the CID on this connection. This implies that we could have valid short header packets with non-compliant DCIDs, so we'd have to have the LB admit these instead of dropping them like it does currently.\r\n6) Same as #5, but instead of echoing the client-generated CID, it uses the 4-tuple routing bits for a new CID. This will make the\r\nCID compliant, but abandon the whole purpose of QUIC-LB until an Initial with the right CR bits arrives (1 in 4 chance per connection).\r\n\r\n***\r\n\r\nUnfortunately, this breaks even more badly it coexists with a configuration with static SIDs. Another example:\r\n1. LB and server have LCID config 0b00 with an SIDL of 1. Server A has SID 0x01 and Server B has SID 0x02.\r\n2. LB gets stream CID config 0b01 (encrypted, static SIDs)\r\n3. An Initial packet has CR bits 0b01. The second octet is 0x02 but the proper SCID decoding maps to Server A. So, it routes to Server A.\r\n4. Server A doesn't have config 0b01 yet, so it extracts an SID from the CID and adds 0x02 to its list of SIDs. It generates an Low-config CID that the LB will route to Server B!\r\n\r\nFrom this, I conclude that dynamically and statically configured SIDs can't safely coexist in the same config space.\r\n\r\n***\r\n\r\nThis is all very hard to reason about. All the options are ugly but my instinct is to retreat to the first option and just abandon this dynamic design.\r\n\r\n\r\n",
       "createdAt": "2021-01-16T01:05:23Z",
-      "updatedAt": "2021-01-28T23:36:16Z",
-      "closedAt": null,
+      "updatedAt": "2021-02-02T23:35:01Z",
+      "closedAt": "2021-02-02T23:35:01Z",
       "comments": [
         {
           "author": "huitema",
@@ -1653,16 +1653,24 @@
       "id": "MDU6SXNzdWU3OTY0OTE1MTA=",
       "title": "Extend low-config concept to all algorithms",
       "url": "https://github.com/quicwg/load-balancers/issues/88",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "In principle, the low-config algorithm's method of extracting a server ID can be extended to all the algorithms. Thus the \"server ID allocation method\" would be an independent variable, with value 'dynamic' and 'static', and the algorithms could operate with either method.\r\n\r\nThis is a significant refactor of the routing section, but will make future decisions about static/dynamic much cleaner to discuss.",
       "createdAt": "2021-01-29T01:02:05Z",
-      "updatedAt": "2021-01-29T01:02:05Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-02-02T23:38:20Z",
+      "closedAt": "2021-02-02T23:38:19Z",
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Closed by #89 ",
+          "createdAt": "2021-02-02T23:38:19Z",
+          "updatedAt": "2021-02-02T23:38:19Z"
+        }
+      ]
     },
     {
       "number": 91,
@@ -4841,24 +4849,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NTY0MzI0MzQ2",
       "title": "Generalize SID Allocation",
       "url": "https://github.com/quicwg/load-balancers/pull/89",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Fixes the broken bits in #84 and also extends to encrypted algorithms (fixing #88)",
       "createdAt": "2021-01-30T00:31:49Z",
-      "updatedAt": "2021-01-30T00:32:03Z",
+      "updatedAt": "2021-02-02T23:35:02Z",
       "baseRepository": "quicwg/load-balancers",
       "baseRefName": "master",
       "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
       "headRepository": "quicwg/load-balancers",
       "headRefName": "all-lowconfig",
       "headRefOid": "607ab4fcec881ada10b59a00b414517c19e7d21c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-02-02T23:35:01Z",
+      "mergedAt": "2021-02-02T23:35:01Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "d9e263347ec15cb0f1c3db0d8769df846d835508"
+      },
       "comments": [],
       "reviews": []
     },
@@ -4874,13 +4884,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2021-01-30T02:44:59Z",
-      "updatedAt": "2021-02-02T18:37:02Z",
+      "updatedAt": "2021-02-04T20:32:30Z",
       "baseRepository": "quicwg/load-balancers",
       "baseRefName": "master",
       "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
       "headRepository": "quicwg/load-balancers",
       "headRefName": "yang",
-      "headRefOid": "7253e9fa54523612113991b2a712c4250576bcf3",
+      "headRefOid": "8c635b346e916d933e5d21bc57254a56d70c7cee",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -4894,6 +4904,60 @@
           "updatedAt": "2021-02-02T18:37:02Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 92,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTY2NDA1NDQ3",
+      "title": "Sync all-lowconfig with master",
+      "url": "https://github.com/quicwg/load-balancers/pull/92",
+      "state": "MERGED",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-02-02T23:29:33Z",
+      "updatedAt": "2021-02-02T23:35:02Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "master",
+      "baseRefOid": "607ab4fcec881ada10b59a00b414517c19e7d21c",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "master",
+      "headRefOid": "d9e263347ec15cb0f1c3db0d8769df846d835508",
+      "closedAt": "2021-02-02T23:35:02Z",
+      "mergedAt": "2021-02-02T23:35:02Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "d9e263347ec15cb0f1c3db0d8769df846d835508"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 93,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTY2NDA4MTM3",
+      "title": "sync yang with master",
+      "url": "https://github.com/quicwg/load-balancers/pull/93",
+      "state": "CLOSED",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-02-02T23:36:48Z",
+      "updatedAt": "2021-02-02T23:38:50Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "yang",
+      "baseRefOid": "7253e9fa54523612113991b2a712c4250576bcf3",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "master",
+      "headRefOid": "d9e263347ec15cb0f1c3db0d8769df846d835508",
+      "closedAt": "2021-02-02T23:38:50Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
