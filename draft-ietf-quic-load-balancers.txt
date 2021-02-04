@@ -88,7 +88,7 @@ Table of Contents
      3.3.  Length Self-Description . . . . . . . . . . . . . . . . .   8
      3.4.  Format  . . . . . . . . . . . . . . . . . . . . . . . . .   8
    4.  Load Balancing Preliminaries  . . . . . . . . . . . . . . . .   9
-     4.1.  Non-Compliant Connection IDS  . . . . . . . . . . . . . .   9
+     4.1.  Non-Compliant Connection IDs  . . . . . . . . . . . . . .   9
      4.2.  Arbitrary Algorithms  . . . . . . . . . . . . . . . . . .  10
      4.3.  Server ID Allocation  . . . . . . . . . . . . . . . . . .  11
        4.3.1.  Static Allocation . . . . . . . . . . . . . . . . . .  11
@@ -475,7 +475,7 @@ Internet-Draft                   QUIC-LB                   February 2021
    balancer uses the first two bits of the connection ID to multiplex
    incoming DCIDs over these schemes (see Section 3.1).
 
-4.1.  Non-Compliant Connection IDS
+4.1.  Non-Compliant Connection IDs
 
    QUIC-LB servers will generate Connection IDs that are decodable to
    extract a server ID in accordance with a specified algorithm and
