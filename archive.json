@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-02-04T20:32:56.509763+00:00",
+  "timestamp": "2021-02-24T18:34:56.241119+00:00",
   "repo": "quicwg/load-balancers",
   "labels": [
     {
@@ -1677,16 +1677,24 @@
       "id": "MDU6SXNzdWU3OTk1NjE5MzQ=",
       "title": "Replace configuration pseudocode with YANG",
       "url": "https://github.com/quicwg/load-balancers/issues/91",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "As the config gets more complicated, the C-ish pseudocode is getting more unwieldy. YANG is the standard for configuration models, so I should bite the bullet and just figure out YANG.",
       "createdAt": "2021-02-02T18:36:47Z",
-      "updatedAt": "2021-02-02T18:36:47Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2021-02-04T20:37:14Z",
+      "closedAt": "2021-02-04T20:37:14Z",
+      "comments": [
+        {
+          "author": "martinduke",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Closed by #90 ",
+          "createdAt": "2021-02-04T20:37:05Z",
+          "updatedAt": "2021-02-04T20:37:05Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -4856,7 +4864,7 @@
       "labels": [],
       "body": "Fixes the broken bits in #84 and also extends to encrypted algorithms (fixing #88)",
       "createdAt": "2021-01-30T00:31:49Z",
-      "updatedAt": "2021-02-02T23:35:02Z",
+      "updatedAt": "2021-02-05T01:43:41Z",
       "baseRepository": "quicwg/load-balancers",
       "baseRefName": "master",
       "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
@@ -4877,24 +4885,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NTY0MzQ2MTE1",
       "title": "YANG Model",
       "url": "https://github.com/quicwg/load-balancers/pull/90",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "martinduke",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2021-01-30T02:44:59Z",
-      "updatedAt": "2021-02-04T20:32:30Z",
+      "updatedAt": "2021-02-04T20:36:06Z",
       "baseRepository": "quicwg/load-balancers",
       "baseRefName": "master",
-      "baseRefOid": "ad518a51acfc20e39f1d93ad1e3e33362fc73337",
+      "baseRefOid": "d9e263347ec15cb0f1c3db0d8769df846d835508",
       "headRepository": "quicwg/load-balancers",
       "headRefName": "yang",
-      "headRefOid": "8c635b346e916d933e5d21bc57254a56d70c7cee",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "75fea235fde4e8652399786642e0ab0a3f9279d7",
+      "closedAt": "2021-02-04T20:36:05Z",
+      "mergedAt": "2021-02-04T20:36:05Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "12c09553f63998dbbe50d86d00166248afca8994"
+      },
       "comments": [
         {
           "author": "martinduke",
@@ -4954,6 +4964,62 @@
       "headRefName": "master",
       "headRefOid": "d9e263347ec15cb0f1c3db0d8769df846d835508",
       "closedAt": "2021-02-02T23:38:50Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 94,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTY3OTA4MDkz",
+      "title": "shortened references",
+      "url": "https://github.com/quicwg/load-balancers/pull/94",
+      "state": "MERGED",
+      "author": "martinduke",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "editorial"
+      ],
+      "body": "",
+      "createdAt": "2021-02-04T20:51:15Z",
+      "updatedAt": "2021-02-04T20:51:34Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "master",
+      "baseRefOid": "a15185369fc2fbc051f77cad82f729c0fa8abfec",
+      "headRepository": "quicwg/load-balancers",
+      "headRefName": "shorter-refs",
+      "headRefOid": "e38fbd0fd1adc6fafdb5476ec7b9e9f85438ff54",
+      "closedAt": "2021-02-04T20:51:33Z",
+      "mergedAt": "2021-02-04T20:51:33Z",
+      "mergedBy": "martinduke",
+      "mergeCommit": {
+        "oid": "d70769ddf6721140d68bde4b49c121e09646e909"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 95,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTY4MDM4NTYz",
+      "title": "Ian's Editorial Nits",
+      "url": "https://github.com/quicwg/load-balancers/pull/95",
+      "state": "OPEN",
+      "author": "ianswett",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Here are some suggestions from my first pass, but overall I think the static vs dynamic server ID allocation idea works nicely.\r\n\r\n2 Q's:\r\n- Is the definition of non-compliant different at LB and server in some cases?\r\n- Might non-routable be a better term than non-compliant?",
+      "createdAt": "2021-02-05T02:19:53Z",
+      "updatedAt": "2021-02-05T02:19:53Z",
+      "baseRepository": "quicwg/load-balancers",
+      "baseRefName": "master",
+      "baseRefOid": "c9898856f1ae54b27bca79a0852e03d5e2b018fd",
+      "headRepository": "ianswett/load-balancers",
+      "headRefName": "patch-2",
+      "headRefOid": "3148cbdf457a7e732fb354bfc0a5db036363f5b8",
+      "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
